@@ -12,7 +12,7 @@ router.post('/joinRoom', async(req,res,next) => {
             return res.status(401).json({ error: "Unauthorised access" });
         }
 
-        const decoded = jwt.verify(token, JWT_SECRET);
+        const decoded = jwt.verify(token,process.env.JWT_SECRET);
         const user = decoded._id;
         const exists = await User.findById(user);
         if(!exists){

@@ -12,7 +12,7 @@ router.post('/createRoom', async(req,res, next) =>{
             return res.status(401).json({error : "Unauthorised access"});
         }
 
-        const decoded = jwt.verify(token,JWT_SECRET);
+        const decoded = jwt.verify(token,process.env.JWT_SECRET);
 
         const room = new Room({
             roomAdmin : decoded._id,
