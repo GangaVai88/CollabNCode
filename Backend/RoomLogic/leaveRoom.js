@@ -1,6 +1,6 @@
 const express = require('express');
 const router = express.Router();
-const jwt = require('jsonwebtokens');
+const jwt = require('jsonwebtoken');
 const Room = require("../models/rooms");
 
 router.post('/leaveRoom', async (req,res,next) => {

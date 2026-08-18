@@ -23,3 +23,7 @@ app.use('/api',createRoom);
 app.use('/api', joinRoom);
 
 app.use('/api', leaveRoom);
+
+app.listen(process.env.PORT, () => {
+    console.log(`Server running on port ${process.env.PORT}`)
+})
