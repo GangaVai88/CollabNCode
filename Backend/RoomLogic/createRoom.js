@@ -1,7 +1,7 @@
 const Room = require("../models/rooms");
 const express = require('express');
 const router = express.Router();
-const nanoid = require('nanoid');
+const {nanoid} = require('nanoid');
 const jwt = require('jsonwebtoken');
 
 router.post('/createRoom', async(req,res, next) =>{
@@ -15,9 +15,9 @@ router.post('/createRoom', async(req,res, next) =>{
         const decoded = jwt.verify(token,process.env.JWT_SECRET);
 
         const room = new Room({
-            roomAdmin : decoded._id,
+            roomAdmin : decoded.userId,
             code : nanoid(6),
-            participants : [decoded._id]
+            participants : [decoded.userId]
         })
 
         await room.save();

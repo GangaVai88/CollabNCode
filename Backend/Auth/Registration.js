@@ -6,7 +6,9 @@ const bcrypt = require('bcrypt');
 
 router.post('/registration', async (req,res,next) => {
     try {
+        console.log("Route Entered");
         const { username, email, password } = req.body;
+        console.log("Body Parsed", {username,email});
 
         const exists = await User.findOne({email});
         if(exists){

@@ -13,7 +13,7 @@ router.post('/joinRoom', async(req,res,next) => {
         }
 
         const decoded = jwt.verify(token,process.env.JWT_SECRET);
-        const user = decoded._id;
+        const user = decoded.userId;
         const exists = await User.findById(user);
         if(!exists){
             return res.status(400).json({ error : "Room not found"});
@@ -23,7 +23,7 @@ router.post('/joinRoom', async(req,res,next) => {
         if(!room){
             return res.status(401).json({error : "Code is invalid"});
         }
-        room.participants.push(decoded._id);
+        room.participants.push(decoded.userId);
         await room.save();
         return res.status(200).json({message : "Room joined successfully"});
     }
